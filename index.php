@@ -1,5 +1,6 @@
 <?php
-$page = $_GET['page'] ?? 'home';
+require_once 'web/templates/layouts/page_layout.php';
+$page = $_GET['page'] ?? 'index';
 
 switch ($page) {
     case 'import-form':
@@ -9,8 +10,7 @@ switch ($page) {
         require_once 'web/templates/pages/login_page.php';
         break;
     // add other pages here
-    default:
-        require_once 'web/templates/pages/home_page.php';
+    case 'index':
 }
 
 

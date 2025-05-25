@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #0095ff;
+    --color-secondary: #dddddd;
+    --color-white: #fff;
+    --color-dark: #252525;
+    --color-success: #48a64c;
+    --color-danger: #e94134;
+    --color-line: #848484;
+}
+
+@layer base {
+    h1 {
+        @apply text-[2.5rem] font-[Poppins] font-semibold;
+    }
+    h2 {
+        @apply text-[32px] font-[Poppins] font-semibold;
+    }
+
+    h3 {
+        @apply text-[20px] font-[Poppins] font-medium;
+    }
+    a.side-menu-list {
+        @apply text-[18px] font-[Public_Sans];
+    }
+
+    .horizontal-line {
+        @apply w-full h-[1px] bg-line;
+    }
+}
+
+@layer components {
+    button.btn {
+        @apply font-[Public_Sans] font-semibold py-3 px-5 rounded-lg cursor-pointer border-none;
+    }
+
+    button.btn-success {
+        @apply bg-success text-white;
+    }
+
+    button.btn-danger {
+        @apply bg-danger text-white;
+    }
+
+    input {
+        @apply border-secondary border rounded-md p-3 focus:outline;
+    }
+}

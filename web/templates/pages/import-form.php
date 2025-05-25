@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../layouts/page_layout.php';
+
+ob_start();
+?>
+
 <div class="flex items-center justify-center min-h-screen bg-gray-200">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96">
         <h2 class="text-lg font-semibold mb-4">Import CSV/XLS File</h2>
@@ -18,3 +24,9 @@
         </form>
     </div>
 </div>
+
+<?php
+$content = ob_get_clean();
+
+PageLayout("Import/Export CSV", $content);
+?>

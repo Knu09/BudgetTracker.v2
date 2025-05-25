@@ -8,7 +8,7 @@
             <h3 class="font-medium">Budget and Expense</h3>
         </div>
         <div>
-            <a href="/register">Sign up</a>
+            <a href="/web/templates/pages/login_page.php">Sign up</a>
         </div>
     </div>
 </nav>

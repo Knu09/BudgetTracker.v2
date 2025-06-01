@@ -1,7 +1,7 @@
 <?php
-function PageLayout($title, $children)
+function PageLayout($title, $children, $showLayout = true)
 {
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -24,15 +24,21 @@ function PageLayout($title, $children)
     </head>
 
     <body class="h-screen font-[Poppins] bg-secondary">
-        <div class="flex w-screen h-screen">
-            <?php include __DIR__ . '/../components/sidebar.php'; ?>
-            <div class="grow">
-                <?php include __DIR__ . '/../components/header.php'; ?>
-                <main id="main-content">
-                    <?= $children ?>
-                </main>
-            </div>
-        </div>
+        <?php if ($showLayout): ?>
+          <div class="flex w-screen h-screen">
+              <?php include __DIR__ . '/../components/sidebar.php'; ?>
+              <div class="grow">
+                  <?php include __DIR__ . '/../components/header.php'; ?>
+                  <main id="main-content">
+                      <?= $children ?>
+                  </main>
+              </div>
+          </div>
+        <?php else: ?>
+            <main id="main-content">
+                <?= $children ?>
+            </main>
+        <?php endif; ?>
         <script src="/static/js/script.js"></script>
     </body>
 

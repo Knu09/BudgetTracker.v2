@@ -4,7 +4,7 @@ require_once __DIR__ . '/../layouts/page_layout.php';
 ob_start();
 ?>
 
-<div class="flex items-center justify-center min-h-screen bg-gray-200">
+<div id="import" class="flex items-center justify-center min-h-screen bg-gray-200">
     <div class="bg-white p-6 rounded-lg shadow-lg w-96">
         <h2 class="text-lg font-semibold mb-4">Import CSV/XLS File</h2>
         <form action="/upload" method="post" enctype="multipart/form-data">

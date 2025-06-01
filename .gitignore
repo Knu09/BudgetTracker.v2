@@ -1,1 +1,3 @@
 phpcs.xml
+.php-cs-fixer.cache
+

@@ -19,7 +19,8 @@ background-color: #cccccc;
 }
 
 .login-container {
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -53,7 +54,7 @@ background-color: #cccccc;
 .form-group input[type="password"] {
     width: 100%;
     padding: 12px 15px;
-    
+    border: 1px #cccccc solid;
     border-radius: 6px;
     box-sizing: border-box;
     font-size: 16px;

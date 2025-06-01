@@ -20,6 +20,7 @@ function PageLayout($title, $children, $showLayout = true)
             rel="stylesheet" />
         <link rel="stylesheet" href="web/static/css/style.css" />
         <link rel="stylesheet" href="web/static/css/output.css" />
+        <link rel="stylesheet" href="../../static/css/account-form.css" />
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
 

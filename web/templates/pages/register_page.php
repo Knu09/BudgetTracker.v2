@@ -7,13 +7,12 @@ ob_start();
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<div x-data="{ showModal: false }">
-    <div id="import" class="grid grid-cols-12 min-h-screen account-form">
-        <div class="col-span-3"></div>
+<div x-data="{ showModal: false }" class="w-full">
+    <div id="register" class="flex w-full justify-center min-h-screen account-form">
 
         <!-- register content -->
-        <div class="col-span-6 flex flex-col items-center pt-12">
-            <div class="mb-10">
+        <div class="flex flex-col items-center pt-12">
+            r <div class="mb-10">
                 <a href="/">
                     <img src="../../static/images/BRIANlysis_dark.svg" class="logo" />
                 </a>
@@ -58,7 +57,6 @@ ob_start();
                 </div>
             </div>
         </div>
-        <div class="col-span-3"></div>
     </div>
 
 

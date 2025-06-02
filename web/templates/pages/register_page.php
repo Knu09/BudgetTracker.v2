@@ -12,7 +12,7 @@ ob_start();
 
         <!-- register content -->
         <div class="flex flex-col items-center pt-12">
-            r <div class="mb-10">
+            <div class="mb-10">
                 <a href="/">
                     <img src="../../static/images/BRIANlysis_dark.svg" class="logo" />
                 </a>

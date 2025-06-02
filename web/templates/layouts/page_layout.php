@@ -1,7 +1,7 @@
 <?php
 function PageLayout($title, $children, $showLayout = true)
 {
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -25,17 +25,17 @@ function PageLayout($title, $children, $showLayout = true)
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
 
-    <body class="h-screen font-[Poppins] bg-secondary">
+    <body class="h-screen font-[Poppins] bg-secondary" x-data="{open: true}">
         <?php if ($showLayout): ?>
-          <div class="flex w-screen h-full">
-              <?php include __DIR__ . '/../components/sidebar.php'; ?>
-              <div class="grow">
-                  <?php include __DIR__ . '/../components/header.php'; ?>
-                  <main id="main-content">
-                      <?= $children ?>
-                  </main>
-              </div>
-          </div>
+            <div class="flex w-screen h-full">
+                <?php include __DIR__ . '/../components/sidebar.php'; ?>
+                <div class="grow">
+                    <?php include __DIR__ . '/../components/header.php'; ?>
+                    <main id="main-content">
+                        <?= $children ?>
+                    </main>
+                </div>
+            </div>
         <?php else: ?>
             <main id="main-content">
                 <?= $children ?>

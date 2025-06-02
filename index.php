@@ -17,6 +17,7 @@ switch ($page) {
     case 'index':
     default:
 ?>
+        <script src="web/static/js/budget_expenses_script.js"></script>
         <div class="m-5 border border-line rounded-md bg-white p-5">
             <h2>Budget</h2>
             <!-- Trigger Button -->

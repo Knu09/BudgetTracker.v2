@@ -1,3 +1,16 @@
+/* Centering Style */
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
 /* body { */
 /*     background-size: 400% 400%; */
 /*     margin: 0; */

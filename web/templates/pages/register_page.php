@@ -1,7 +1,8 @@
 <?php
-
+session_start();
+$error = $_SESSION['error'] ?? null;
 require_once __DIR__ . '/../layouts/page_layout.php';
-
+unset($_SESSION['error']);
 ob_start();
 ?>
 
@@ -47,6 +48,10 @@ ob_start();
                     <div class="mb-6 flex items-center justify-center">
                         <a href="#" class="text-md link-text" @click.prevent="showModal = true">Terms of Service-Privacy Policy</a>
                     </div>
+
+                    <?php if ($error): ?>
+                    <div class="mb-4 text-red-600 font-semibold"><?= htmlspecialchars($error) ?></div>
+                    <?php endif; ?>
 
                     <!-- submit -->
                     <button type="submit" class="w-full bg-black text-white p-2 rounded-lg mb-4 text-xl">Sign Up</button>

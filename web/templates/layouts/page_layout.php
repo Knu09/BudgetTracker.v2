@@ -42,7 +42,6 @@ function PageLayout($title, $children, $showLayout = true)
                 <?= $children ?>
             </main>
         <?php endif; ?>
-        <script src="../../static/js/budget_expenses_script.js"></script>
     </body>
 
     </html>

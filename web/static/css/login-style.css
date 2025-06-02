@@ -1,0 +1,131 @@
+
+
+
+#main-content{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    /* min-height: 100vh; */
+    margin: 0;
+    /* padding: 20px; */
+    margin-top: 70px;
+    box-sizing: border-box;
+}
+
+body {
+background-color: #cccccc;
+}
+
+.login-container {
+    /* background-color: #f0f0f0; */
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #333333;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px #cccccc solid;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #333;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    /* border-color: black; */
+    border: 2px solid black;
+    /* box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);  */
+    outline: none; /* Removes the default browser outline, as we're using box-shadow for focus indication */
+}
+
+.form-group input[type="email"]::placeholder,
+.form-group input[type="password"]::placeholder {
+    color: #aaaaaa;
+}
+
+.forgot-password {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    color: #333333;
+    text-decoration: underline;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.forgot-password:hover {
+    color: #000000;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    border: none;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: #282828;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+    background-color: #1a1a1a;
+}
+
+.separator {
+    font-size: 14px;
+    color: #777777;
+    margin: 20px 0;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #333333;
+    border: 2px solid black;
+}
+
+.btn-secondary:hover {
+    background-color: #f7f7f7;
+    border-color: #a0a0a0;
+}

@@ -55,9 +55,8 @@ $stmt->bind_param("ss", $email, $hashedPassword);
 if ($stmt->execute()) {
     $message = "User registered successfully";
     echo json_encode(["success" => true, "message" => $message]);
-    header("Location: ../web/templates/pages/register_page.php");
-    $_SESSION['error'] = $message;
-    header("Location: ../web/templates/pages/register_page.php");
+    $_SESSION['success'] = $message;
+    header("Location: ../web/templates/pages/login_page.php");
 
 } else {
     echo json_encode(["success" => false, "message" => "Database error: " . $stmt->error]);

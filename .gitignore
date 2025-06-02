@@ -1,3 +1,27 @@
 phpcs.xml
 .php-cs-fixer.cache
 
+# Node modules (npm dependencies)
+node_modules/
+
+# Tailwind output files (optional, if you're generating a single compiled CSS)
+web/static/css/output.css
+
+# OS / Editor specific
+.DS_Store
+*.log
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# npm logs
+npm-debug.log*
+.yarn-debug.log*
+.yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables (if using dotenv for secret config)
+.env
+.env.*
+

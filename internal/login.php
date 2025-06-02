@@ -45,6 +45,7 @@ try {
 
     // unset($user['password']);
     echo json_encode(["success" => true, "message" => "Login successful", "user" => $user]);
+    $_SESSION['user'] = $user;
     header("Location: ../index.php");
     exit();
 } catch (Exception $e) {

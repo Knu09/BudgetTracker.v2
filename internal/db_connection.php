@@ -11,7 +11,6 @@ try {
         $config['pass'],
         $config['db']
     );
-    echo "Success";
     return $conn;
 } catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();

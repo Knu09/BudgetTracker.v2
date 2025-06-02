@@ -1,4 +1,4 @@
-<aside class="w-[300px] duration-300 overflow-hidden py-4 border-e border-line bg-white" id="sidebar">
+<aside x-bind:class="open ? 'block' : 'hidden'" class="w-[300px] duration-300 overflow-hidden py-4 border-e border-line bg-white" id="sidebar" x-show="open" x-transition>
     <div>
         <div class="px-4 pb-2">
             <img src="web/static/images/BRIANlysis.png" width="157" height="33" />

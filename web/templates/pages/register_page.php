@@ -1,18 +1,18 @@
 <?php
-
+session_start();
+$error = $_SESSION['error'] ?? null;
 require_once __DIR__ . '/../layouts/page_layout.php';
-
+unset($_SESSION['error']);
 ob_start();
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<div x-data="{ showModal: false }">
-    <div id="import" class="grid grid-cols-12 min-h-screen account-form">
-        <div class="col-span-3"></div>
+<div x-data="{ showModal: false }" class="w-full">
+    <div id="register" class="flex w-full justify-center min-h-screen account-form">
 
         <!-- register content -->
-        <div class="col-span-6 flex flex-col items-center pt-12">
+        <div class="flex flex-col items-center pt-12">
             <div class="mb-10">
                 <a href="/">
                     <img src="../../static/images/BRIANlysis_dark.svg" class="logo" />
@@ -24,7 +24,7 @@ ob_start();
                 <h1 class="text-3xl mb-6 text-center ">Registration</h1>
 
                 <!-- register form -->
-                <form action="/upload" method="post">
+                <form action="../../../internal/register_server.php" method="post">
                     <!-- email field -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
@@ -49,6 +49,10 @@ ob_start();
                         <a href="#" class="text-md link-text" @click.prevent="showModal = true">Terms of Service-Privacy Policy</a>
                     </div>
 
+                    <?php if ($error): ?>
+                    <div class="mb-4 text-red-600 font-semibold"><?= htmlspecialchars($error) ?></div>
+                    <?php endif; ?>
+
                     <!-- submit -->
                     <button type="submit" class="w-full bg-black text-white p-2 rounded-lg mb-4 text-xl">Sign Up</button>
                 </form>
@@ -58,7 +62,6 @@ ob_start();
                 </div>
             </div>
         </div>
-        <div class="col-span-3"></div>
     </div>
 
 

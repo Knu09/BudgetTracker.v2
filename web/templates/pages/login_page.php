@@ -1,6 +1,9 @@
 <?php
+session_start();
+$error = $_SESSION['error'] ?? null;
+$success = $_SESSION['success'] ?? null;
 require_once __DIR__ . '/../layouts/page_layout.php';
-
+unset($_SESSION['error'], $_SESSION['success']);
 ob_start();
 ?>
 
@@ -21,7 +24,7 @@ ob_start();
             <h1 class="text-3xl mb-6 text-center ">Log in</h1>
 
             <!-- register form -->
-            <form action="/upload" method="post">
+            <form action="../../../internal/login_server.php" method="post">
                 <!-- email field -->
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
@@ -35,6 +38,16 @@ ob_start();
                     <input type="password" id="password" name="password" placeholder="password123"
                         class="mt-1 block w-full border rounded p-2" required />
                 </div>
+
+                <!-- error -->
+                <?php if ($error): ?>
+                <div class="mb-4 text-red-600 font-semibold"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+
+                <!-- account created successfully -->
+                <?php if ($success): ?>
+                <div class="mb-4 text-green-600 font-semibold"><?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
 
                 <!-- submit -->
                 <button type="submit" class="w-full bg-black text-white p-2 rounded-lg mb-4 text-xl">Log in</button>

@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-$config = require '../config.php';
-
+$config = require __DIR__ . '/../config.php';
 
 try {
     $conn = new mysqli(
@@ -11,7 +10,6 @@ try {
         $config['pass'],
         $config['db']
     );
-    echo "Success";
     return $conn;
 } catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();

@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <nav class="bg-[#252525] text-white">
     <div class="flex flex-wrap items-center justify-between mx-auto p-6">
         <div class="flex gap-3">
@@ -8,7 +12,13 @@
             <h3 class="font-medium">Budget and Expense</h3>
         </div>
         <div>
-            <a href="/web/templates/pages/register_page.php">Sign up</a>
+            <?php if (isset($_SESSION['user'])): ?>
+                <form action="/internal/logout.php" method="post">
+                    <button type="submit" class="text-white underline">Logout</button>
+                </form>
+            <?php else: ?>
+                <a href="/web/templates/pages/register_page.php" class="underline">Sign up</a>
+            <?php endif; ?>
         </div>
     </div>
 </nav>

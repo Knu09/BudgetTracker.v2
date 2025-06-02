@@ -45,10 +45,12 @@ switch ($page) {
     default:
 ?>
         <script src="web/static/js/budget_expenses_script.js"></script>
+
         <div class="m-5 border border-line rounded-md bg-white p-5">
             <h2>Budget</h2>
             <!-- Trigger Button -->
-            <button class="btn btn-success mb-2" onclick="document.getElementById('budget-modal').showModal()">Add Budget</button>
+            <button class="btn btn-success mb-2" onclick="document.getElementById('budget-modal').showModal()">Add
+                Budget</button>
 
             <div class="budget-table my-4 relative overflow-x-auto">
                 <table class="w-full text-md text-left rtl-text-right">
@@ -78,7 +80,8 @@ switch ($page) {
 
             <h2 class="mt-4">Expenses</h2>
             <!-- Trigger Button -->
-            <button class="btn btn-danger mb-2" onclick="document.getElementById('expense-modal').showModal()">Add Expense</button>
+            <button class="btn btn-danger mb-2" onclick="document.getElementById('expense-modal').showModal()">Add
+                Expense</button>
 
             <div class="expense-table my-4 relative overflow-x-auto">
                 <table class="w-full text-md text-left rtl-text-right">
@@ -116,31 +119,41 @@ switch ($page) {
         </div>
 
         <!-- Budget Modal -->
-        <dialog id="budget-modal" class="rounded-md p-5 max-w-md w-full backdrop:bg-black/50">
+        <dialog id="budget-modal" class="
+    rounded-md p-5 max-w-md w-full
+    backdrop:bg-black/50
+    fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    max-h-[90vh] overflow-y-auto">
             <form id="budget-form" method="dialog" class="flex flex-col gap-2">
                 <h3 class="text-lg font-bold">Add Budget</h3>
                 <input type="text" id="budget-name" placeholder="Budget Name" required class="input input-bordered" />
                 <input type="number" id="budget-amount" placeholder="Amount" required class="input input-bordered" />
                 <div class="flex justify-end gap-2 mt-4">
                     <button type="submit" class="btn btn-success">Add</button>
-                    <button type="button" class="btn btn-outline" onclick="document.getElementById('budget-modal').close()">Cancel</button>
+                    <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('budget-modal').close()">Cancel</button>
                 </div>
             </form>
         </dialog>
 
         <!-- Expense Modal -->
-        <dialog id="expense-modal" class="rounded-md p-5 max-w-md w-full backdrop:bg-black/50">
+        <dialog id="expense-modal" class="
+    rounded-md p-5 max-w-md w-full
+    backdrop:bg-black/50
+    fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    max-h-[90vh] overflow-y-auto">
             <form id="expense-form" method="dialog" class="flex flex-col gap-2">
                 <h3 class="text-lg font-bold">Add Expense</h3>
                 <input type="text" id="expense-name" placeholder="Expense Name" required class="input input-bordered" />
                 <input type="number" id="expense-amount" placeholder="Amount" required class="input input-bordered" />
                 <div class="flex justify-end gap-2 mt-4">
                     <button type="submit" class="btn btn-danger">Add</button>
-                    <button type="button" class="btn btn-outline" onclick="document.getElementById('expense-modal').close()">Cancel</button>
+                    <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('expense-modal').close()">Cancel</button>
                 </div>
             </form>
         </dialog>
-<?php
+        <?php
         break;
 }
 

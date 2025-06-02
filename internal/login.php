@@ -29,9 +29,9 @@ try {
 
     //if no user exits
     if (!$user) {
+        echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         $_SESSION['error'] = "Invalid email or password";
         header("Location: ../web/templates/pages/login_page.php");
-        echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         exit();
     }
 

@@ -13,13 +13,19 @@ $password = isset($_POST['password']) ? $_POST['password'] : null;
 
 // check pass
 if (!$email || !$password) {
-    echo json_encode(["success" => false, "message" => "Missing required fields"]);
+    $message = "Missing required fields";
+    echo json_encode(["success" => false, "message" => $message]);
+    $_SESSION['error'] = $message;
+    header("Location: ../web/templates/pages/register_page.php");
     exit();
 }
 
 // check email validity
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(["success" => false, "message" => "Invalid E-Mail"]);
+    $message = "Invalid E-Mail";
+    echo json_encode(["success" => false, "message" => $message]);
+    $_SESSION['error'] = $message;
+    header("Location: ../web/templates/pages/register_page.php");
     exit();
 }
 
@@ -31,7 +37,10 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    echo json_encode(["success" => false, "message" => "Email already registered"]);
+    $message = "Email already registered";
+    echo json_encode(["success" => false, "message" => $message]);
+    $_SESSION['error'] = $message;
+    header("Location: ../web/templates/pages/register_page.php");
     exit();
 }
 $stmt->close();
@@ -44,7 +53,12 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $email, $hashedPassword);
 
 if ($stmt->execute()) {
-    echo json_encode(["success" => true, "message" => "User registered successfully"]);
+    $message = "User registered successfully";
+    echo json_encode(["success" => true, "message" => $message]);
+    header("Location: ../web/templates/pages/register_page.php");
+    $_SESSION['error'] = $message;
+    header("Location: ../web/templates/pages/register_page.php");
+
 } else {
     echo json_encode(["success" => false, "message" => "Database error: " . $stmt->error]);
 }

@@ -1,6 +1,8 @@
 <?php
+session_start();
+$error = $_SESSION['error'] ?? null;
 require_once __DIR__ . '/../layouts/page_layout.php';
-
+unset($_SESSION['error']);
 ob_start();
 ?>
 
@@ -35,6 +37,10 @@ ob_start();
                     <input type="password" id="password" name="password" placeholder="password123"
                         class="mt-1 block w-full border rounded p-2" required />
                 </div>
+
+                <?php if ($error): ?>
+                <div class="mb-4 text-red-600 font-semibold"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
 
                 <!-- submit -->
                 <button type="submit" class="w-full bg-black text-white p-2 rounded-lg mb-4 text-xl">Log in</button>

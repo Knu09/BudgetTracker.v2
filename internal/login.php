@@ -1,5 +1,6 @@
-
 <?php
+
+session_start();
 
 header("Content-Type: application/json");
 error_reporting(E_ALL);
@@ -28,13 +29,17 @@ try {
 
     //if no user exits
     if (!$user) {
+        $_SESSION['error'] = "Invalid email or password";
+        header("Location: ../web/templates/pages/login_page.php");
         echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         exit();
     }
 
     //pasword not same
     if (!password_verify($password, $user['password'])) {
+        $_SESSION['error'] = "Invalid email or password";
         echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+        header("Location: ../web/templates/pages/login_page.php");
         exit();
     }
 

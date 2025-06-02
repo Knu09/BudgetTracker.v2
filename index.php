@@ -1,10 +1,37 @@
 <?php
 require_once 'web/templates/layouts/page_layout.php';
+$conn = require_once 'internal/db_connection.php';
 
 $is_htmx = isset($_SERVER['HTTP_HX_REQUEST']);
 $page = $_GET['page'] ?? 'index';
 
 ob_start();
+
+
+session_start();
+
+$user_id = $_SESSION['user_id'] ?? null;
+
+$budgets = [];
+$expenses = [];
+
+if ($user_id) {
+    // Fetch budgets
+    $stmt = $conn->prepare("SELECT name, amount FROM budget WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $budgets = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    // Fetch expenses
+    $stmt = $conn->prepare("SELECT name, amount FROM expense WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $expenses = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+}
+
+$conn->close();
 
 switch ($page) {
     case 'import-form':
@@ -31,7 +58,18 @@ switch ($page) {
                             <th scope="col" class="px-6 py-3">Amount</th>
                         </tr>
                     </thead>
-                    <tbody id="budget-list"></tbody>
+                    <tbody id="budget-list">
+                        <?php
+                        $total_budget = 0;
+                        foreach ($budgets as $b):
+                            $total_budget += $b['amount'];
+                        ?>
+                            <tr>
+                                <td class="px-6 py-4"><?= htmlspecialchars($b['name']) ?></td>
+                                <td class="px-6 py-4">$<?= number_format($b['amount'], 2) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
             <div class="total-amount text-end">
@@ -50,16 +88,30 @@ switch ($page) {
                             <th scope="col" class="px-6 py-3">Amount</th>
                         </tr>
                     </thead>
-                    <tbody id="expense-list"></tbody>
+                    <tbody id="expense-list">
+                        <?php
+                        $total_expense = 0;
+                        foreach ($expenses as $e):
+                            $total_expense += $e['amount'];
+                        ?>
+                            <tr>
+                                <td class="px-6 py-4"><?= htmlspecialchars($e['name']) ?></td>
+                                <td class="px-6 py-4">$<?= number_format($e['amount'], 2) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
             <div class="total-amount text-end">
-                Expenses Total: $<span id="expense-total">0.00</span>
+                Budget Total: $<span id="budget-total"><?= number_format($total_budget, 2) ?></span>
+            </div>
+            <div class="total-amount text-end">
+                Expenses Total: $<span id="expense-total"><?= number_format($total_expense, 2) ?></span>
             </div>
 
             <h1 class="mt-4">Balance</h1>
             <div class="total-balance">
-                Balance Total: $<span id="balance-total">0.00</span>
+                Balance Total: $<span id="balance-total"><?= number_format($total_budget - $total_expense, 2) ?></span>
             </div>
         </div>
 

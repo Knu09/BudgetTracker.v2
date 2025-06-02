@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $table = $type === 'budget' ? 'budgets' : ($type === 'expense' ? 'expenses' : null);
+    $table = $type === 'budget' ? 'budget' : ($type === 'expense' ? 'expense' : null);
 
     if (!$table) {
         http_response_code(400);

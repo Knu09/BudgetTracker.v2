@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-$config = require '../config.php';
-
+$config = require __DIR__ . '/../config.php';
 
 try {
     $conn = new mysqli(

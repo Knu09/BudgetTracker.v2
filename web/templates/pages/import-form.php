@@ -17,7 +17,7 @@
                 <input type="checkbox" id="header-row" name="header_row" class="mr-2" />
                 <label for="header-row" class="text-sm text-gray-700">File has header row</label>
             </div>
-            <button type="submit" class="w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition-colors">IMPORT</button>
+            <button type="submit" class="w-full cursor-pointer bg-black text-white p-2 rounded hover:bg-gray-800 transition-colors">IMPORT</button>
         </form>
     </div>
 </div>

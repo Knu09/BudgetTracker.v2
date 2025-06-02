@@ -14,7 +14,7 @@ ob_start();
     <!-- register content -->
     <div class="col-span-6 flex flex-col items-center pt-12">
       <div class="mb-10">
-          <img src="../../static/images/BRIANlysis_dark.svg" width="500" height="33" alt="BRIANlysis Logo" />
+        <img src="../../static/images/BRIANlysis_dark.svg" class="logo"/>
       </div>
 
       <div class="bg-white px-12 pt-5 pb-12 rounded-lg shadow-lg w-full">
@@ -26,14 +26,14 @@ ob_start();
           <div class="mb-4">
             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
             <input type="email" id="email" name="email" placeholder="name@mail.com"
-                class="mt-1 block w-full border rounded p-2" />
+                class="mt-1 block w-full border rounded p-2" required/>
           </div>
 
           <!-- password filed -->
           <div class="mb-6">
             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
             <input type="password" id="password" name="password" placeholder="password123"
-                class="mt-1 block w-full border rounded p-2" />
+                class="mt-1 block w-full border rounded p-2" required/>
           </div>
 
           <div class="mb-4 flex items-center">

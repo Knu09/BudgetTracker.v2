@@ -10,7 +10,7 @@ ob_start();
         <form action="/upload" method="post" enctype="multipart/form-data">
             <div class="mb-4">
                 <label for="csv-file" class="block text-sm font-medium text-gray-700 mb-1">Choose CSV/XLS file:</label>
-                <input type="file" name="file" id="csv-file" accept=".csv,.xls text/csv"
+                <input type="file" name="file" id="csv-file" accept=".csv, text/csv, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     class="block w-full border rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold
                             file:bg-black file:text-white hover:file:bg-gray-800"/>
             </div>

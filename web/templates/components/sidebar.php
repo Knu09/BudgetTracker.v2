@@ -23,7 +23,7 @@
             <div class="horizontal-line"></div>
             <li class="flex items-center my-2 px-4 py-2 gap-5 hover:text-primary cursor-pointer hover:bg-secondary rounded-md">
                 <i class="fa-solid fa-download text-[32px]"></i>
-                <a href="/index.php?page=import-form"
+                <a href="import-form"
                     hx-get="/index.php?page=import-form"
                     hx-target="#main-content"
                     hx-swap="innerHTML"

@@ -1,8 +1,8 @@
-<div id="import" class="flex items-center justify-center min-h-screen bg-gray-200">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+<div id="import" class="flex my-4">
+    <div class="bg-white mx-auto p-6 rounded-lg shadow-lg w-96">
         <h2 class="text-lg font-semibold mb-4">Import CSV/XLS File</h2>
         <form action="/upload" method="post" enctype="multipart/form-data">
-            <div class="mb-4">
+            <div class="mb-4 cursor-pointer">
                 <label for="csv-file" class="block text-sm font-medium text-gray-700 mb-1">Choose CSV/XLS file:</label>
                 <input type="file" name="file" id="csv-file" accept=".csv, text/csv, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     class="block w-full border rounded p-2 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold

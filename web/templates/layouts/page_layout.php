@@ -26,7 +26,7 @@ function PageLayout($title, $children, $showLayout = true)
 
     <body class="h-screen font-[Poppins] bg-secondary">
         <?php if ($showLayout): ?>
-          <div class="flex w-screen h-screen">
+          <div class="flex w-screen h-full">
               <?php include __DIR__ . '/../components/sidebar.php'; ?>
               <div class="grow">
                   <?php include __DIR__ . '/../components/header.php'; ?>

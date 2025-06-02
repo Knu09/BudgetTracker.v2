@@ -1,5 +1,6 @@
 phpcs.xml
 .php-cs-fixer.cache
+vendor/*
 
 # Node modules (npm dependencies)
 node_modules/

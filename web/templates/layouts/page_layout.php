@@ -22,7 +22,8 @@ function PageLayout($title, $children, $showLayout = true)
         <link rel="stylesheet" href="web/static/css/output.css" />
         <link rel="stylesheet" href="../../static/css/account-form.css" />
         <link rel="stylesheet" href="./../../static/css/login-style.css" />
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinjs@3.x.x/dist/cdn.min.js"></script>
+
     </head>
 
     <body class="h-screen font-[Poppins] bg-secondary" x-data="{open: true}">
@@ -41,7 +42,7 @@ function PageLayout($title, $children, $showLayout = true)
                 <?= $children ?>
             </main>
         <?php endif; ?>
-        <script src="/static/js/script.js"></script>
+        <script src="../../static/js/budget_expenses_script.js"></script>
     </body>
 
     </html>

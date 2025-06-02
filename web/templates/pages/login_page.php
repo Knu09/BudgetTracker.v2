@@ -21,7 +21,7 @@ ob_start();
             <h1 class="text-3xl mb-6 text-center ">Log in</h1>
 
             <!-- register form -->
-            <form action="/upload" method="post">
+            <form action="../../../internal/login.php" method="post">
                 <!-- email field -->
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>

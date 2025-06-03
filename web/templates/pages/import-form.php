@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-var_dump($_SESSION['imported_data']);
+// var_dump($_SESSION['imported_data']);
 ?>
 
 

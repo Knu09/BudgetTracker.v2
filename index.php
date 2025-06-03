@@ -44,7 +44,7 @@ if ($user_id) {
     $stmt->close();
 
     // Fetch expenses
-    $stmt = $conn->prepare("SELECT name, amount FROM expense WHERE user_id = ?"); // <<< PROBLEM HERE!
+    $stmt = $conn->prepare("SELECT id, name, amount FROM expense WHERE user_id = ?"); // <<< PROBLEM HERE!
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $expenses = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

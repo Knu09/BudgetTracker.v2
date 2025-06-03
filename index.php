@@ -1,16 +1,36 @@
 <?php
-require_once 'web/templates/layouts/page_layout.php';
-$conn = require_once 'internal/db_connection.php';
 
-$is_htmx = isset($_SERVER['HTTP_HX_REQUEST']);
-$page = $_GET['page'] ?? 'index';
+
+
 
 ob_start();
 
 
 session_start();
 
+
+// --- Authentication Check ---
+// Check if the user_id is set in the session
+if (!isset($_SESSION['user_id'])) {
+
+    header("Location: /web/templates/pages/login_page.php");
+    exit; // Important to stop script execution after a redirect header
+} else {
+
+}
+// --- End Authentication Check ---
+
+
+
+require_once 'web/templates/layouts/page_layout.php';
+$conn = require_once 'internal/db_connection.php';
+
+$is_htmx = isset($_SERVER['HTTP_HX_REQUEST']);
+$page = $_GET['page'] ?? 'index';
+
 $user_id = $_SESSION['user_id'] ?? null;
+
+$user_email = $_SESSION['user_email'] ?? null; 
 
 $budgets = [];
 $expenses = [];

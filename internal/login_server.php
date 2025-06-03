@@ -46,6 +46,7 @@ try {
 
     // Set the user ID in session
     $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_email'] = $user['email'];
 
     // unset($user['password']);
     echo json_encode(["success" => true, "message" => "Login successful", "user" => $user]);

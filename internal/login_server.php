@@ -31,7 +31,7 @@ try {
     if (!$user) {
         $_SESSION['error'] = "Invalid email or password";
         header("Location: ../web/templates/pages/login_page.php");
-        echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+        // echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         exit();
     }
 
@@ -39,8 +39,8 @@ try {
     //pasword not same
     if (!password_verify($password, $user['password'])) {
         $_SESSION['error'] = "Invalid email or password";
-        echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         header("Location: ../web/templates/pages/login_page.php");
+        // echo json_encode(["success" => false, "message" => "Invalid email or password"]);
         exit();
     }
 
@@ -49,7 +49,7 @@ try {
     $_SESSION['user_email'] = $user['email'];
 
     // unset($user['password']);
-    echo json_encode(["success" => true, "message" => "Login successful", "user" => $user]);
+    // echo json_encode(["success" => true, "message" => "Login successful", "user" => $user]);
     header("Location: ../index.php");
     exit();
 } catch (Exception $e) {

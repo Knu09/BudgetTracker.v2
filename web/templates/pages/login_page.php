@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../../../index.php");
+    exit();
+}
+
 $error = $_SESSION['error'] ?? null;
 if (isset($_SESSION['error'])) {
     echo "<p style='color: red'>" . $_SESSION['error'] . "</p>";

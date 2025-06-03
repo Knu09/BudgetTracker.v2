@@ -16,7 +16,7 @@ if (!$email || !$password) {
     $message = "Missing required fields";
     echo json_encode(["success" => false, "message" => $message]);
     $_SESSION['error'] = $message;
-    header("Location: ../web/templates/pages/register_page.php");
+    header("Location: /web/templates/pages/register_page.php");
     exit();
 }
 
@@ -25,7 +25,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $message = "Invalid E-Mail";
     echo json_encode(["success" => false, "message" => $message]);
     $_SESSION['error'] = $message;
-    header("Location: ../web/templates/pages/register_page.php");
+    header("Location: /web/templates/pages/register_page.php");
     exit();
 }
 
@@ -40,7 +40,7 @@ if ($stmt->num_rows > 0) {
     $message = "Email already registered";
     echo json_encode(["success" => false, "message" => $message]);
     $_SESSION['error'] = $message;
-    header("Location: ../web/templates/pages/register_page.php");
+    header("Location: /web/templates/pages/register_page.php");
     exit();
 }
 $stmt->close();
@@ -56,7 +56,7 @@ if ($stmt->execute()) {
     $message = "User registered successfully";
     echo json_encode(["success" => true, "message" => $message]);
     $_SESSION['success'] = $message;
-    header("Location: ../web/templates/pages/login_page.php");
+    header("Location: /web/templates/pages/login_page.php");
 
 } else {
     echo json_encode(["success" => false, "message" => "Database error: " . $stmt->error]);

@@ -2,7 +2,7 @@
 // Ensure session is started.
 // It's good practice to check if it's already started,
 // especially if this file might be included in various places.
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 

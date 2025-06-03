@@ -1,6 +1,7 @@
 phpcs.xml
 .php-cs-fixer.cache
 vendor/*
+cookies.txt
 
 # Node modules (npm dependencies)
 node_modules/

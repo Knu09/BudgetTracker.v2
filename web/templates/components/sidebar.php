@@ -18,7 +18,7 @@
             <li
                 class="flex items-center my-2 px-4 py-2 gap-5 hover:text-primary cursor-pointer hover:bg-secondary rounded-md active:text-primary">
                 <i class="fa-solid fa-coins text-[20px]"></i>
-                <a href="/dashboard" class="side-menu-list">Budget and Expense</a>
+                <a href="/index.php" class="side-menu-list">Budget and Expense</a>
             </li>
             <div class="horizontal-line"></div>
             <li class="flex items-center my-2 px-4 py-2 gap-5 hover:text-primary cursor-pointer hover:bg-secondary rounded-md">

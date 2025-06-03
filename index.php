@@ -30,27 +30,26 @@ $page = $_GET['page'] ?? 'index';
 
 $user_id = $_SESSION['user_id'] ?? null;
 
-$user_email = $_SESSION['user_email'] ?? null; 
+$user_email = $_SESSION['user_email'] ?? null;
 
 $budgets = [];
 $expenses = [];
 
 if ($user_id) {
     // Fetch budgets
-    $stmt = $conn->prepare("SELECT name, amount FROM budget WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT id, name, amount FROM budget WHERE user_id = ?"); // CORRECT: 'id' is selected
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $budgets = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 
     // Fetch expenses
-    $stmt = $conn->prepare("SELECT name, amount FROM expense WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT name, amount FROM expense WHERE user_id = ?"); // <<< PROBLEM HERE!
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $expenses = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 }
-
 $conn->close();
 
 switch ($page) {
@@ -63,10 +62,11 @@ switch ($page) {
     // add other pages here
     case 'index':
     default:
-?>
+        ?>
         <script src="web/static/js/budget_expenses_script.js"></script>
 
         <div class="m-5 border border-line rounded-md bg-white p-5">
+
             <h2>Budget</h2>
             <!-- Trigger Button -->
             <button class="btn btn-success mb-2" onclick="document.getElementById('budget-modal').showModal()">Add
@@ -78,6 +78,7 @@ switch ($page) {
                         <tr>
                             <th scope="col" class="px-6 py-3">Budget Name</th>
                             <th scope="col" class="px-6 py-3">Amount</th>
+                            <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
                     <tbody id="budget-list">
@@ -85,18 +86,36 @@ switch ($page) {
                         $total_budget = 0;
                         foreach ($budgets as $b):
                             $total_budget += $b['amount'];
-                        ?>
-                            <tr>
+                            ?>
+                            <tr data-id="<?= htmlspecialchars($b['id']) ?>">
                                 <td class="px-6 py-4"><?= htmlspecialchars($b['name']) ?></td>
                                 <td class="px-6 py-4">$<?= number_format($b['amount'], 2) ?></td>
+                                <td class="px-6 py-4 text-left">
+                                    <button type="button" class="remove-item-btn text-red-500 hover:text-red-700 font-medium"
+                                        data-id="<?= htmlspecialchars($b['id']) ?>" data-type="budget"
+                                        data-name="<?= htmlspecialchars($b['name']) ?>">
+                                        Remove
+                                    </button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+
+
+                <div class="flex justify-end ">
+                    <!-- Budget Total Section (from Option 1, slightly modified for context) -->
+                    <div class="total-budget-section p-4 bg-gray-50 rounded-lg shadow text-right"> <!-- Added text-right -->
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Budget Total</h3>
+                        <p class="mt-1 text-3xl font-semibold text-gray-900">
+                            $<span id="budget-total"><?= number_format($total_budget, 2) ?></span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="total-amount text-end">
-                Budget Total: $<span id="budget-total">0.00</span>
-            </div>
+            <!-- BUDGET TRACKER -->
+
+
 
             <h2 class="mt-4">Expenses</h2>
             <!-- Trigger Button -->
@@ -109,33 +128,65 @@ switch ($page) {
                         <tr>
                             <th scope="col" class="px-6 py-3">Expense Name</th>
                             <th scope="col" class="px-6 py-3">Amount</th>
+                            <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
+                            <!-- Column for Actions -->
                         </tr>
                     </thead>
                     <tbody id="expense-list">
                         <?php
                         $total_expense = 0;
-                        foreach ($expenses as $e):
+                        foreach ($expenses as $e): // Assuming $e has an 'id' key
                             $total_expense += $e['amount'];
-                        ?>
-                            <tr>
+                            ?>
+                            <tr data-id="<?= htmlspecialchars($e['id']) ?>"> <!-- Optional: data-id on tr -->
                                 <td class="px-6 py-4"><?= htmlspecialchars($e['name']) ?></td>
                                 <td class="px-6 py-4">$<?= number_format($e['amount'], 2) ?></td>
+                                <td class="px-6 py-4 text-left">
+                                    <button type="button" class="remove-item-btn text-red-500 hover:text-red-700 font-medium"
+                                        data-id="<?= htmlspecialchars($e['id']) ?>" data-type="expense"
+                                        data-name="<?= htmlspecialchars($e['name']) ?>">
+                                        Remove
+                                    </button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-            <div class="total-amount text-end">
-                Budget Total: $<span id="budget-total"><?= number_format($total_budget, 2) ?></span>
-            </div>
-            <div class="total-amount text-end">
-                Expenses Total: $<span id="expense-total"><?= number_format($total_expense, 2) ?></span>
+
+
+
+            <!-- Parent Container -->
+            <div class="flex justify-end ">
+
+                <!-- Expense Total Section (from Option 1, slightly modified for context) -->
+                <div class="total-expense-section p-4 bg-gray-50 rounded-lg shadow text-right"> <!-- Added text-right -->
+                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Expense Total</h3>
+                    <p class="mt-1 text-3xl font-semibold text-red-600">
+                        $<span id="expense-total"><?= number_format($total_expense, 2) ?></span>
+                    </p>
+                </div>
+
             </div>
 
-            <h1 class="mt-4">Balance</h1>
-            <div class="total-balance">
-                Balance Total: $<span id="balance-total"><?= number_format($total_budget - $total_expense, 2) ?></span>
+
+            <div class="total-balance-section mt-4 p-4 bg-green-50 rounded-lg shadow text-left">
+                <!-- Or bg-blue-50, bg-gray-50 -->
+                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Balance</h3>
+                <p class="mt-1 text-3xl font-semibold 
+        <?php
+        $balance = $total_budget - $total_expense;
+        if ($balance >= 0) {
+            echo 'text-green-600'; // Positive balance
+        } else {
+            echo 'text-red-600'; // Negative balance
+        }
+        ?>">
+                    $<span id="balance-total"><?= number_format($balance, 2) ?></span>
+                </p>
             </div>
+
+
         </div>
 
         <!-- Budget Modal -->
@@ -151,7 +202,7 @@ switch ($page) {
                 <div class="flex justify-end gap-2 mt-4">
                     <button type="submit" class="btn btn-success">Add</button>
                     <button type="button" class="btn btn-outline"
-                        onclick="document.getElementById('budget-modal').close()">Cancel</button>
+                        onclick="document.getElementById('budget-modal').close(); window.location.reload();">Cancel</button>
                 </div>
             </form>
         </dialog>
@@ -169,7 +220,7 @@ switch ($page) {
                 <div class="flex justify-end gap-2 mt-4">
                     <button type="submit" class="btn btn-danger">Add</button>
                     <button type="button" class="btn btn-outline"
-                        onclick="document.getElementById('expense-modal').close()">Cancel</button>
+                        onclick="document.getElementById('expense-modal').close(); window.location.reload();">Cancel</button>
                 </div>
             </form>
         </dialog>

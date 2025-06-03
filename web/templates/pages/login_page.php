@@ -6,6 +6,11 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $error = $_SESSION['error'] ?? null;
+if (isset($_SESSION['error'])) {
+    echo "<p style='color: red'>" . $_SESSION['error'] . "</p>";
+    unset($_SESSION['error']); // clear it after showing
+}
+
 $success = $_SESSION['success'] ?? null;
 
 require_once __DIR__ . '/../layouts/page_layout.php';
@@ -21,7 +26,7 @@ ob_start();
         <div class="mb-10">
             <a href="/">
 
-                <img src="../../static/images/BRIANlysis_dark.svg" class="logo" />
+                <img src="/web/static/images/BRIANlysis_dark.svg" class="logo" />
             </a>
 
         </div>
@@ -30,7 +35,7 @@ ob_start();
             <h1 class="text-3xl mb-6 text-center ">Log in</h1>
 
             <!-- register form -->
-            <form action="../../../internal/login_server.php" method="post">
+            <form action="/internal/login_server.php" method="post">
                 <!-- email field -->
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>

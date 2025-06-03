@@ -15,7 +15,7 @@ ob_start();
         <div class="flex flex-col items-center pt-12">
             <div class="mb-10">
                 <a href="/">
-                    <img src="../../static/images/BRIANlysis_dark.svg" class="logo" />
+                    <img src="/web/static/images/BRIANlysis_dark.svg" class="logo" />
                 </a>
 
             </div>
@@ -24,7 +24,7 @@ ob_start();
                 <h1 class="text-3xl mb-6 text-center ">Registration</h1>
 
                 <!-- register form -->
-                <form action="../../../internal/register_server.php" method="post">
+                <form action="/internal/register_server.php" method="post">
                     <!-- email field -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>

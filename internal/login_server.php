@@ -1,25 +1,23 @@
 <?php
-
-session_start();
-
-header("Content-Type: application/json");
+// session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $conn = require "db_connection.php";
 
-// $data = json_decode(file_get_contents("php://input"), true);
-
+// Grab POST data
 $email = isset($_POST['email']) ? trim($_POST['email']) : null;
 $password = isset($_POST['password']) ? $_POST['password'] : null;
 
-
+// Check for missing fields
 if (!$email || !$password) {
-    echo json_encode(["success" => false, "message" => "Missing email or password"]);
+    $_SESSION['error'] = "Missing email or password";
+    header("Location: /web/templates/pages/login_page.php");
     exit();
 }
 
 try {
+    // Check if user exists
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -27,32 +25,20 @@ try {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    //if no user exits
-    if (!$user) {
+    if (!$user || !password_verify($password, $user['password'])) {
         $_SESSION['error'] = "Invalid email or password";
-        header("Location: ../web/templates/pages/login_page.php");
-        // echo json_encode(["success" => false, "message" => "Invalid email or password"]);
+        header("Location: /web/templates/pages/login_page.php");
         exit();
     }
 
-
-    //pasword not same
-    if (!password_verify($password, $user['password'])) {
-        $_SESSION['error'] = "Invalid email or password";
-        header("Location: ../web/templates/pages/login_page.php");
-        // echo json_encode(["success" => false, "message" => "Invalid email or password"]);
-        exit();
-    }
-
-    // Set the user ID in session
+    // Login success: set session
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_email'] = $user['email'];
 
-    // unset($user['password']);
-    // echo json_encode(["success" => true, "message" => "Login successful", "user" => $user]);
-    header("Location: ../index.php");
+    header("Location: /index.php");
     exit();
 } catch (Exception $e) {
-    echo json_encode(["error" => "Server error", "message" => $e->getMessage()]);
+    $_SESSION['error'] = "Server error: " . $e->getMessage();
+    header("Location: /web/templates/pages/login_page.php");
     exit();
 }

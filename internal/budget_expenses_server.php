@@ -1,6 +1,6 @@
 <?php
 // Ensure session_start() is called only once and at the very beginning
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 

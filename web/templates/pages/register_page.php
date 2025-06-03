@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $error = $_SESSION['error'] ?? null;
 require_once __DIR__ . '/../layouts/page_layout.php';
 unset($_SESSION['error']);

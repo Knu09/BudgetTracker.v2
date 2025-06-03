@@ -1,7 +1,13 @@
 <?php
 session_start();
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../../../index.php");
+    exit();
+}
+
 $error = $_SESSION['error'] ?? null;
 $success = $_SESSION['success'] ?? null;
+
 require_once __DIR__ . '/../layouts/page_layout.php';
 unset($_SESSION['error'], $_SESSION['success']);
 ob_start();

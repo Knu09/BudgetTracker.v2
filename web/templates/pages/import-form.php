@@ -2,6 +2,8 @@
 <?php
 session_start(); // MUST BE THE VERY FIRST THING
 
+
+var_dump($_SESSION['imported_data']);
 ?>
 
 

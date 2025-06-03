@@ -1,6 +1,8 @@
 
 <?php
-session_start(); // MUST BE THE VERY FIRST THING
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 
 var_dump($_SESSION['imported_data']);

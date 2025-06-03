@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // UPLOAD_DIR and targetFilePath might not be needed if you don't move the file
 // define('UPLOAD_DIR', __DIR__ . '/uploads/'); 
